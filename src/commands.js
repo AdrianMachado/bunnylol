@@ -6,8 +6,8 @@ export type CommandType = {|
     searchurl?: string,
 |};
 
-export type CommandNames = 'fb' | 'm' | 'mw' | 'wa' | 'waw' | 'gm' | 'sis' | 'col' | 'yt' | 'tv' | 'gh' | 'r' | 'l' | 'me' | 'ig' | 'tw' | 'tr' | 'vs' | 'todo' |
-                           'c' | 'wf' | '$' | 'cal' | 'uvacovid' | 'hs' | 'p' | 'n' | 'h' | 'pv' | 'gd' | 'wp' | 'wsj' | 'cnn' | 'wiki' | 'g' | 'DEFAULT';
+export type CommandNames = 'fb' | 'm' | 'mw' | 'wa' | 'waw' | 'gm' | 'sis' | 'col' | 'yt' | 'tv' | 'gh' | 'r' | 'li' | 'me' | 'ig' | 'tw' | 'tr' | 'vs' | 'todo' |
+                           'c' | 'wf' | '$' | 'cal' | 'uvacovid' | 'hs' | 'p' | 'n' | 'h' | 'pv' | 'gd' | 'wp' | 'wsj' | 'cnn' | 'wiki' | 'g' | 'gmail' | 'gdrive' | 'gmaps' | 'przp' | 'zp' |  'nflx' |  'hulu' | 'gcal' | 'gkeep' | 'sentry' |  'linear' | 'lnr' | 'DEFAULT';
 
 export type CommandDataTableType = {|
     name: string, 
@@ -30,10 +30,6 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
         name: "Messenger Desktop App",
         url: "messenger://",
     },
-    mw: {
-        name: "Messenger Web",
-        url: "https://www.messenger.com/"
-    },
     wa: {
         name: "WhatsApp Desktop App",
         url: "whatsapp://",
@@ -42,44 +38,45 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
         name: "WhatsApp Web",
         url: "https://web.whatsapp.com/"
     },
-    gm: {
+    gmail: {
         name: "Gmail",
         url: "https://mail.google.com/mail/u/0",
         searchurl: "https://mail.google.com/mail/u/"
     },
-    gd: {
+    gdrive: {
         name: "Google Drive",
         url: "https://drive.google.com/drive/u/0",
         searchurl: "https://drive.google.com/drive/u/"
     },
-    sis: {
-        name: "UVA SIS",
-        url: "https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_GN.H_SPRINGBOARD.FieldFormula.IScript_Main",
-    },
-    col: {
-        name: "UVA Collab",
-        url: "https://collab.its.virginia.edu/portal",
+    gmaps: {
+        name: "Google Maps",
+        url: "https://www.google.com/maps/",
+        searchurl: "https://www.google.com/maps/search/"
     },
     yt: {
         name: "YouTube",
         url: "https://youtube.com/",
         searchurl: "https://www.youtube.com/results?search_query="
     },
-    tv: {
-        name: "YouTube TV",
-        url: "https://tv.youtube.com/",
-    },
     gh: {
         name: "GitHub",
         url: "https://github.com/",
         searchurl: "https://www.github.com/search?q="
+    },
+    przp: {
+        name: "Github Zuplo Portal",
+        url: "https://github.com/zuplo/portal/pulls"
+    },
+    zp: {
+        name: "Zuplo Portal",
+        url: "https://portal.zuplo.com/"
     },
     r: {
         name: "Reddit",
         url: "https://reddit.com/",
         searchurl: "https://www.reddit.com/search?q="
     },
-    l: {
+    li: {
         name: "Linkedin",
         url: "https://linkedin.com/",
     },
@@ -88,92 +85,50 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
         url: "https://instagram.com/",
         searchurl: "https://instagram.com/"
     },
-    tw: {
-        name: "Twitter",
-        url: "https://twitter.com/",
-        searchurl: "https://twitter.com/search?q="
-    },
-    me: {
-        name: "Rithik.me - Personal Website",
-        url: "https://rithik.me/me",
-    },
     g: {
         name: "Google",
         url: "https://google.com/",
         searchurl: "https://www.google.com/search?q="
     },
-    wp: {
-        name: "Washington Post",
-        url: "https://www.washingtonpost.com/regional/"
-    },
-    wsj: {
-        name: "Wall Street Journal",
-        url: "https://www.wsj.com/"
-    },
-    cnn: {
-        name: "CNN",
-        url: "https://www.cnn.com/"
-    },
-    tr: {
-        name: "HooHacks Trello Board",
-        url: "https://trello.com/b/GjKhtVPK/hoohacks"
-    },
-    n: {
+    nflx: {
         name: "Netflix",
         url: "https://netflix.com/",
         searchurl: "https://www.netflix.com/search?q="
     },
-    h: {
+    hulu: {
         name: "Hulu",
         url: "https://hulu.com/",
-    },
-    pv: {
-        name: "Amazon Prime Video",
-        url: "https://www.amazon.com/Amazon-Video/b/?&node=2858778011&ref=dvm_MLP_ROWNA_US_1",
-        searchurl: "https://www.amazon.com/s?i=instant-video&ref=nb_sb_noss_2&k="
-    },
-    p: {
-        name: "Piazza",
-        url: "https://piazza.com/class"
     },
     vs: {
         name: "VS Code",
         url: "vscode://",
     },
-    wf: {
-        name: "Webflow",
-        url: "https://webflow.com/design/hoohacks"
-    },
-    hs: {
-        name: "Hubspot",
-        url: "https://app.hubspot.com/"
-    },
-    $: {
-        name: "Robinhood",
-        url: "https://robinhood.com/", 
-        searchurl: "https://robinhood.com/stocks/"
-    },
-    c: {
-        name: "Robinhood Crypto",
-        url: "https://robinhood.com/", 
-        searchurl: "https://robinhood.com/crypto/"
-    },
-    cal: {
+    gcal: {
         name: "Google Calendar",
         url: "https://calendar.google.com/calendar/r"
-    },
-    uvacovid: {
-        name: "UVA COVID-19 Tracker",
-        url: "https://returntogrounds.virginia.edu/covid-tracker"
     },
     wiki: {
         name: "Wikipedia",
         url: "https://en.wikipedia.org",
         searchurl: "https://en.wikipedia.org/wiki/"
     },
-    todo: {
-        name: "Microsoft To Do",
-        url: "https://to-do.live.com"
+    gkeep: {
+        name: "Google Keep",
+        url: "https://keep.google.com/#home"
+    },
+    sentry: {
+        name: "Sentry",
+        url: "https://sentry.io/organizations/zuplo/issues/"
+    },
+    linear: {
+        name: "Linear",
+        url: "https://linear.app/zuplo/inbox",
+        searchurl: "https://linear.app/zuplo/search?q="
+    },
+    lnr: {
+        name: "Linear issue",
+        url: "https://linear.app/zuplo/team/ZUP/new",
+        searchurl: "https://linear.app/zuplo/issue/"
     },
     DEFAULT: {
         name: "Default - Google Search",
