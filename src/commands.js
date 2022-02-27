@@ -6,8 +6,8 @@ export type CommandType = {|
     searchurl?: string,
 |};
 
-export type CommandNames = 'fb' | 'm' | 'mw' | 'wa' | 'waw' | 'gm' | 'sis' | 'col' | 'yt' | 'tv' | 'gh' | 'r' | 'l' | 'me' | 'ig' | 'tw' | 'tr' | 'vs' | 'todo' |
-                           'c' | 'wf' | '$' | 'cal' | 'uvacovid' | 'hs' | 'p' | 'n' | 'h' | 'pv' | 'gd' | 'wp' | 'wsj' | 'cnn' | 'wiki' | 'g' | 'gmail' | 'gdrive' | 'gmaps' | 'przp' | 'zp' |  'nflx' |  'hulu' | 'gcal' | 'gkeep' | 'sentry' |  'linear' | 'lnr' | DEFAULT;
+export type CommandNames = 'fb' | 'm' | 'mw' | 'wa' | 'waw' | 'gm' | 'sis' | 'col' | 'yt' | 'tv' | 'gh' | 'r' | 'li' | 'me' | 'ig' | 'tw' | 'tr' | 'vs' | 'todo' |
+                           'c' | 'wf' | '$' | 'cal' | 'uvacovid' | 'hs' | 'p' | 'n' | 'h' | 'pv' | 'gd' | 'wp' | 'wsj' | 'cnn' | 'wiki' | 'g' | 'gmail' | 'gdrive' | 'gmaps' | 'przp' | 'zp' |  'nflx' |  'hulu' | 'gcal' | 'gkeep' | 'sentry' |  'linear' | 'lnr' | 'DEFAULT';
 
 export type CommandDataTableType = {|
     name: string, 
