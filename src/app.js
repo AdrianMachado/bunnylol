@@ -4,7 +4,6 @@ import type { CommandType } from "./commands.js";
 import type { ClassCommands, JoinOrDiscussType, ClassType } from "./classes.js";
 
 import { COMMANDS } from "./commands.js";
-import { CLASSES } from "./classes.js";
 import { viewHelpPage } from "./help.js";
 
 const redirect: (string) => Promise<void> = async function (url: string) {
@@ -28,25 +27,13 @@ const bunnylol: (string) => Promise<boolean> = async function (
     const prefix: string = arr[0].endsWith(".")
       ? arr[0].substring(0, arr[0].length - 1).toLowerCase()
       : arr[0].toLowerCase();
-    if (prefix in CLASSES) {
-      // $FlowFixMe - this is actually correct since the prefix is a key.
-      const classData: ClassType = CLASSES[prefix];
-      if (arr.length > 1) {
-        if (arr[1].toLowerCase() === "j" && classData.zoomurl) {
-          await redirect(`${classData.zoomurl}`);
-          return true;
-        } else if (arr[1].toLowerCase() === "d" && classData.discussionurl) {
-          await redirect(`${classData.discussionurl}`);
-          return true;
-        } else if (arr[1].toLowerCase() === "c" && classData.collaburl) {
-          await redirect(`${classData.collaburl}`);
-          return true;
-        } else if (arr[1].toLowerCase() === "s" && classData.specialurl) {
-          await redirect(`${classData.specialurl}`);
-          return true;
-        }
-      }
-      await redirect(`${classData.url}`);
+    const isLinear = arr[0].includes("ZUP-");
+    if (isLinear) {
+      await redirect(
+        `https://linear.app/zuplo/issue/${encodeURIComponent(
+          currCmd
+        )}`
+      );
       return true;
     }
     if (prefix in COMMANDS) {
@@ -74,8 +61,7 @@ const bunnylol: (string) => Promise<boolean> = async function (
 };
 
 const currCmd: string =
-  new URL(window.location.href).searchParams.get("search") ?? "help";
-
+  new URL(window.location.href).searchParams.get("s") ?? "help";
 switch (currCmd) {
   case "help" || "":
     viewHelpPage();

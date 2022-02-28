@@ -1,6 +1,6 @@
 {
   "name": "rithik-bunnylol",
-  "main": "main.js",
+  "main": "scripts/main.js",
   "scripts": {
     "build": "babel src/ -d compiled/",
     "bundle": "rollup compiled/app.js -o bundle.js -f cjs --compact",

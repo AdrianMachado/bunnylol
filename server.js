@@ -11,6 +11,7 @@ router.get('/',function(req, res){
 app.use('/', router);
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/lib', express.static(path.join(__dirname, 'lib')))
+app.use('/scripts', express.static(path.join(__dirname, 'scripts')))
 app.listen(process.env.port || 3000);
 
 console.log('Running at Port 3000');
