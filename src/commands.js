@@ -7,7 +7,7 @@ export type CommandType = {|
 |};
 
 export type CommandNames = 'fb' | 'm' | 'mw' | 'wa' | 'waw' | 'gm' | 'sis' | 'col' | 'yt' | 'tv' | 'gh' | 'r' | 'li' | 'me' | 'ig' | 'tw' | 'tr' | 'vs' | 'todo' |
-                           'c' | 'wf' | '$' | 'cal' |  'hs' | 'p' | 'n' | 'h' | 'pv' | 'gd' | 'wp' | 'wsj' | 'cnn' | 'wiki' | 'g' | 'gmail' | 'gdrive' | 'gmaps' | 'przp' | 'zp' |  'nflx' |  'hulu' | 'gcal' | 'gkeep' | 'sentry' |  'linear' | 'lnr' | 'DEFAULT';
+                           'c' | 'wf' | '$' | 'cal' |  'hs' | 'p' | 'n' | 'h' | 'pv' | 'gd' | 'wp' | 'wsj' | 'cnn' | 'wiki' | 'g' | 'gmail' | 'gdrive' | 'gmaps' | 'przp' | 'zp' |  'nflx' |  'hulu' | 'gcal' | 'gkeep' | 'sentry' |  'linear' | 'lnr' | 'notion' | 'DEFAULT';
 
 export type CommandDataTableType = {|
     name: string, 
@@ -129,6 +129,10 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
         name: "Linear issue",
         url: "https://linear.app/zuplo/team/ZUP/new",
         searchurl: "https://linear.app/zuplo/issue/"
+    },
+    notion: {
+        name: "Notion",
+        url: "https://www.notion.so/"
     },
     DEFAULT: {
         name: "Default - Google Search",
