@@ -64,10 +64,30 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
         searchurl: "https://www.github.com/search?q="
     },
     przp: {
-        name: "Github Zuplo Portal",
+        name: "Github Zuplo Portal PRs",
         url: "https://github.com/zuplo/portal/pulls"
     },
-    zp: {
+    ghzp: {
+        name: "Github Zuplo Portal",
+        url: "https://github.com/zuplo/portal"
+    },
+    prc: {
+        name: "Github Zuplo Core PRs",
+        url: "https://github.com/zuplo/core/pulls"
+    },
+    ghc: {
+        name: "Github Zuplo Core",
+        url: "https://github.com/zuplo/core"
+    },
+    prdp: {
+        name: "Github Zuplo Dev Portal Pulls",
+        url: "https://github.com/zuplo/dev-portal"
+    },
+    ghdp: {
+        name: "Github Zuplo Dev Portal",
+        url: "https://github.com/zuplo/dev-portal/pulls"
+    },
+    pzc: {
         name: "Zuplo Portal",
         url: "https://portal.zuplo.com/"
     },
@@ -79,11 +99,6 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
     li: {
         name: "Linkedin",
         url: "https://linkedin.com/",
-    },
-    ig: {
-        name: "Instagram",
-        url: "https://instagram.com/",
-        searchurl: "https://instagram.com/"
     },
     g: {
         name: "Google",
@@ -133,6 +148,11 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
     notion: {
         name: "Notion",
         url: "https://www.notion.so/"
+    },
+    ld: {
+        name: "Launch Darkly",
+        url: "https://app.launchdarkly.com/default/production/features",
+        searchurl: "https://app.launchdarkly.com/default/production/features/"
     },
     DEFAULT: {
         name: "Default - Google Search",
