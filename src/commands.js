@@ -81,11 +81,11 @@ export const COMMANDS: {[CommandNames] : CommandType} = {
     },
     prdp: {
         name: "Github Zuplo Dev Portal Pulls",
-        url: "https://github.com/zuplo/dev-portal"
+        url: "https://github.com/zuplo/dev-portal/pulls"
     },
     ghdp: {
         name: "Github Zuplo Dev Portal",
-        url: "https://github.com/zuplo/dev-portal/pulls"
+        url: "https://github.com/zuplo/dev-portal"
     },
     pzc: {
         name: "Zuplo Portal",
