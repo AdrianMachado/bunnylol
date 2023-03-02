@@ -3,7 +3,9 @@
 My version of BunnyLOL, forked from Rithik, with commands added
 
 You can host it on any website that you would like (even on GitHub Pages).
+
 ## Example Commands
+
 type `help` to see full list
 
 ## Setup
@@ -26,8 +28,8 @@ type `help` to see full list
 
 4. Move the main.js file into the scripts folder and replace the previous version.
 
-4. (optional) Publish to your website.
+5. (optional) Publish to your website.
 
 ## Running locally
 
-Since we use `import` module syntax, we need to run a server to bypass CORS issues. You can setup the server by running steps 1-3 above, followed by `node server.js`. The server should be up and visible at `localhost:3000`.
+Since we use `import` module syntax, we need to run a server to bypass CORS issues. You can setup the server by running steps 1-3 above, followed by `node server.js`. The server should be up and visible at `localhost:6969`.
