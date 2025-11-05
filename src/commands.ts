@@ -21,6 +21,7 @@ export type CommandNames =
   | "prfk"
   | "dptst"
   | "argocd"
+  | "patchfk"
   | "DEFAULT";
 
 export type CommandDataTableType = {
@@ -107,6 +108,12 @@ export const COMMANDS: Record<CommandNames, CommandType> = {
     url: "https://argocd.admin.acryl.io/",
     searchurl:
       "https://argocd.admin.acryl.io/applications?showFavorites=false&proj=&sync=&autoSync=&health=&namespace=&cluster=&labels=&search=",
+  },
+  patchfk: {
+    name: "Patch Fork",
+    url: "https://patch-diff.githubusercontent.com/",
+    searchurl:
+      "https://patch-diff.githubusercontent.com/raw/acryldata/datahub-fork/pull/%s.diff",
   },
   DEFAULT: {
     name: "Default - Google Search",

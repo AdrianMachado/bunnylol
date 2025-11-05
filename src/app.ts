@@ -42,11 +42,15 @@ const bunnylol = async function (currCmd: string): Promise<boolean> {
       if (command.searchurl && arr.length > 1) {
         // Has search term - use searchurl
         const searchParam = prefix !== "$" ? prefix.length + 1 : prefix.length;
-        await redirect(
-          `${command.searchurl}${encodeURIComponent(
-            currCmd.substring(searchParam).trim()
-          )}`
-        );
+        const searchUrl = command.searchurl.includes("%s")
+          ? command.searchurl.replace(
+              "%s",
+              encodeURIComponent(currCmd.substring(searchParam).trim())
+            )
+          : `${command.searchurl}${encodeURIComponent(
+              currCmd.substring(searchParam).trim()
+            )}`;
+        await redirect(searchUrl);
         return true;
       } else if (command.searchurl && arr.length === 1) {
         // Just command, but has searchurl - redirect to base url
