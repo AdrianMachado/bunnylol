@@ -8,6 +8,10 @@ router.get("/", function (req, res) {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
 
+router.get("/bunnylol", function (req, res) {
+  res.sendFile(path.join(__dirname + "/index.html"));
+});
+
 app.use("/", router);
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/lib", express.static(path.join(__dirname, "lib")));

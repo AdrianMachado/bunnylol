@@ -1,35 +1,98 @@
 # BunnyLOL
 
-My version of BunnyLOL, forked from Rithik, with commands added
+A custom search engine that allows you to quickly navigate to websites and perform searches using short commands.
 
-You can host it on any website that you would like (even on GitHub Pages).
+## Quick Start
 
-## Example Commands
+1. **Install dependencies:**
 
-type `help` to see full list
+   ```bash
+   npm install
+   ```
 
-## Setup
+2. **Build the project:**
 
-1. Open Chrome and click the three dots. Click `Settings` and scroll down to `Search Engines`.
+   ```bash
+   npm run build
+   ```
 
-2. Click `Manage Search Engines`.
+3. **Start the server:**
 
-3. Add a new search engine with the URL being `http://rithik.me/bunnylol?search=%s`. Of course, you should change the `rithik.me` part to your own domain.
+   ```bash
+   npm run dev
+   ```
 
-4. Make this the default search engine.
+   Or run separately:
 
-## Adding a command
+   ```bash
+   node server.js
+   ```
 
-1. Run `npm install` so that `flow` (JavaScript type checker) can run.
+   The server will be available at `http://localhost:6969`
 
-2. Open up the `src/commands.js` file. Add your command to the `COMMANDS` object. You must include a `name` and `url` attribute and you can add an additional `searchurl` attribute if you would to be able to type a command like `yt NBA Highlights` (in which case, `bunnylol` will automatically search for NBA Highlights on YouTube).
+4. **Configure your browser:**
+   - Open Chrome Settings → Search Engines → Manage Search Engines
+   - Add a new search engine:
+     - **Name:** BunnyLOL (or any name you prefer)
+     - **Keyword:** `b` (or any keyword)
+     - **URL:** `http://localhost:6969/bunnylol?s=%s`
+   - Make it your default search engine
 
-3. Run `npm run build`, `npm run bundle`, `npm run minify`.
+Now you can type commands like `yt cats` or `gh` in your browser's address bar!
 
-4. Move the main.js file into the scripts folder and replace the previous version.
+## Adding Commands
 
-5. (optional) Publish to your website.
+1. Open `src/commands.ts`
 
-## Running locally
+2. Add your command to the `COMMANDS` object:
 
-Since we use `import` module syntax, we need to run a server to bypass CORS issues. You can setup the server by running steps 1-3 above, followed by `node server.js`. The server should be up and visible at `localhost:6969`.
+   ```typescript
+   mycmd: {
+     name: "My Site",
+     url: "https://example.com",
+     searchurl: "https://example.com/search?q=",  // Optional
+   },
+   ```
+
+3. Add the command name to the `CommandNames` type union
+
+4. Rebuild:
+
+   ```bash
+   npm run build
+   ```
+
+5. Restart the server if it's running
+
+**Command attributes:**
+
+- `name` (required): Display name for the command
+- `url` (required): Base URL to navigate to
+- `searchurl` (optional): URL pattern for search queries. Use `%s` or it will append the search term
+
+**Examples:**
+
+- `yt` → Opens YouTube
+- `yt cats` → Searches YouTube for "cats"
+- `gh` → Opens GitHub
+- `gh typescript` → Searches GitHub for "typescript"
+
+## Project Structure
+
+- `src/` - TypeScript source files
+  - `commands.ts` - Command definitions
+  - `app.ts` - Main application logic
+  - `help.ts` - Help page rendering
+- `compiled/` - Compiled JavaScript (generated)
+- `scripts/main.js` - Minified bundle (generated)
+- `server.js` - Express server for local development
+
+## Development
+
+- `npm run build` - Compile TypeScript, bundle, and minify
+- `npm run dev` - Build and start the server
+- `npm run type-check` - Type check without building
+
+## Hosting
+
+You can host this on any static hosting service (GitHub Pages, Netlify, Vercel, etc.). Just update the search engine URL in your browser to point to your deployed domain instead of `localhost:6969`.

@@ -1,18 +1,13 @@
-// @flow strict
-
-import type { CommandType } from "./commands.js";
-import type { ClassCommands, JoinOrDiscussType, ClassType } from "./classes.js";
+import type { CommandType, CommandNames } from "./commands.js";
 
 import { COMMANDS } from "./commands.js";
 import { viewHelpPage } from "./help.js";
 
-const redirect: (string) => Promise<void> = async function (url: string) {
-  await window.location.replace(url);
+const redirect = async function (url: string): Promise<void> {
+  window.location.replace(url);
 };
 
-const bunnylol: (string) => Promise<boolean> = async function (
-  currCmd: string
-) {
+const bunnylol = async function (currCmd: string): Promise<boolean> {
   let arr: Array<string> = [];
   if (currCmd.startsWith("$")) {
     arr = currCmd.split(/[ $+]/g);
@@ -27,31 +22,38 @@ const bunnylol: (string) => Promise<boolean> = async function (
     const prefix: string = arr[0].endsWith(".")
       ? arr[0].substring(0, arr[0].length - 1).toLowerCase()
       : arr[0].toLowerCase();
-    const isLinear = arr[0].includes("ZUP-");
+    const isLinear = arr[0].includes("CUS-");
     if (isLinear) {
       await redirect(
-        `https://linear.app/zuplo/issue/${encodeURIComponent(
-          currCmd
-        )}`
+        `https://linear.app/acryl-data/issue/${encodeURIComponent(currCmd)}`
       );
       return true;
     }
     if (prefix in COMMANDS) {
-      // $FlowFixMe - this is actually correct since the prefix is a key.
-      const command: CommandType = COMMANDS[prefix];
+      const command: CommandType | undefined = COMMANDS[prefix as CommandNames];
+      if (!command) {
+        return false;
+      }
       const protocol: string = new URL(command.url).protocol;
       if (protocol !== "https:" && protocol !== "http:") {
         viewHelpPage();
+        return true;
       }
-      if (command.searchurl && arr.length !== 1) {
+      if (command.searchurl && arr.length > 1) {
+        // Has search term - use searchurl
         const searchParam = prefix !== "$" ? prefix.length + 1 : prefix.length;
         await redirect(
           `${command.searchurl}${encodeURIComponent(
-            currCmd.substr(searchParam)
+            currCmd.substring(searchParam).trim()
           )}`
         );
         return true;
+      } else if (command.searchurl && arr.length === 1) {
+        // Just command, but has searchurl - redirect to base url
+        await redirect(command.url);
+        return true;
       } else {
+        // No searchurl - always redirect to base url
         await redirect(command.url);
         return true;
       }
@@ -63,19 +65,19 @@ const bunnylol: (string) => Promise<boolean> = async function (
 const currCmd: string =
   new URL(window.location.href).searchParams.get("s") ?? "help";
 switch (currCmd) {
-  case "help" || "":
+  case "help":
+  case "":
     viewHelpPage();
     break;
   default:
     bunnylol(currCmd)
       .then((done: boolean) => {
-        if (!done && COMMANDS.DEFAULT.searchurl) {
-          redirect(
-            `${COMMANDS.DEFAULT.searchurl}${encodeURIComponent(currCmd)}`
-          );
+        const defaultCmd = COMMANDS.DEFAULT;
+        if (!done && defaultCmd && defaultCmd.searchurl) {
+          redirect(`${defaultCmd.searchurl}${encodeURIComponent(currCmd)}`);
         }
       })
-      .catch((reject: string) => {
+      .catch((reject: unknown) => {
         console.log(reject);
       });
     break;

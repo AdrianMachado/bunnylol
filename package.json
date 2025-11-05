@@ -2,19 +2,20 @@
   "name": "rithik-bunnylol",
   "main": "scripts/main.js",
   "scripts": {
-    "build": "babel src/ -d compiled/",
-    "bundle": "rollup compiled/app.js -o bundle.js -f cjs --compact",
-    "minify": "minify --mangle bundle.js -o main.js",
-    "flow": "flow"
+    "build": "npm run build:ts && npm run build:bundle && npm run build:minify",
+    "build:ts": "tsc",
+    "build:bundle": "rollup compiled/app.js -o bundle.js -f cjs --compact",
+    "build:minify": "minify --mangle bundle.js -o scripts/main.js",
+    "dev": "npm run build && node server.js",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.4",
-    "@babel/preset-flow": "^7.10.4",
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.5.0",
     "babel-minify": "^0.5.1",
     "express": "^4.17.1",
-    "flow-bin": "^0.132.0",
     "rollup": "^2.26.10",
-    "rollup-plugin-terser": "^5.3.1"
+    "rollup-plugin-terser": "^5.3.1",
+    "typescript": "^5.1.6"
   }
 }
