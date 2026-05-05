@@ -10,13 +10,21 @@ A custom search engine that allows you to quickly navigate to websites and perfo
    npm install
    ```
 
-2. **Build the project:**
+2. **Configure local private command URLs:**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit `.env` with any private workspace URLs you want to keep out of source control.
+
+3. **Build the project:**
 
    ```bash
    npm run build
    ```
 
-3. **Start the server:**
+4. **Start the server:**
 
    ```bash
    npm run dev
@@ -30,7 +38,7 @@ A custom search engine that allows you to quickly navigate to websites and perfo
 
    The server will be available at `http://localhost:6969`
 
-4. **Configure your browser:**
+5. **Configure your browser:**
    - Open Chrome Settings → Search Engines → Manage Search Engines
    - Add a new search engine:
      - **Name:** BunnyLOL (or any name you prefer)
@@ -69,6 +77,7 @@ Now you can type commands like `yt cats` or `gh` in your browser's address bar!
 - `name` (required): Display name for the command
 - `url` (required): Base URL to navigate to
 - `searchurl` (optional): URL pattern for search queries. Use `%s` or it will append the search term
+- Use `${env:ENV_VAR_NAME}` anywhere in `url` or `searchurl` for private values loaded from local `.env` at runtime
 
 **Examples:**
 

@@ -2,6 +2,7 @@ export type CommandType = {
   name: string;
   url: string;
   searchurl?: string;
+  normalizeSearch?: "incidentReference";
 };
 
 export type CommandNames =
@@ -14,6 +15,7 @@ export type CommandNames =
   | "gmaps"
   | "gcal"
   | "lnr"
+  | "inc"
   | "notion"
   | "ghos"
   | "ghfk"
@@ -67,7 +69,7 @@ export const COMMANDS: Record<CommandNames, CommandType> = {
   },
   ghfk: {
     name: "Datahub Fork",
-    url: "https://github.com/acryldata/datahub-fork",
+    url: "https://github.com/${env:GITHUB_FORK_PROJECT}/${env:GITHUB_FORK_REPO}",
   },
   pros: {
     name: "Datahub Core PRs",
@@ -75,7 +77,7 @@ export const COMMANDS: Record<CommandNames, CommandType> = {
   },
   prfk: {
     name: "Datahub Fork PRs",
-    url: "https://github.com/acryldata/datahub-fork/pulls",
+    url: "https://github.com/${env:GITHUB_FORK_PROJECT}/${env:GITHUB_FORK_REPO}/pulls",
   },
   dptst: {
     name: "Datahub Deploy Test",
@@ -96,8 +98,14 @@ export const COMMANDS: Record<CommandNames, CommandType> = {
   },
   lnr: {
     name: "Linear issue",
-    url: "https://linear.app/acryl-data/inbox",
-    searchurl: "https://linear.app/acryl-data/issue/",
+    url: "https://linear.app/${env:LINEAR_WORKSPACE_ID}/inbox",
+    searchurl: "https://linear.app/${env:LINEAR_WORKSPACE_ID}/issue/",
+  },
+  inc: {
+    name: "incident.io incident",
+    url: "https://app.incident.io/${env:INCIDENT_ORG_ID}/incidents",
+    searchurl: "https://app.incident.io/${env:INCIDENT_ORG_ID}/incidents/%s",
+    normalizeSearch: "incidentReference",
   },
   notion: {
     name: "Notion",
@@ -105,15 +113,15 @@ export const COMMANDS: Record<CommandNames, CommandType> = {
   },
   argocd: {
     name: "ArgoCD",
-    url: "https://argocd.admin.acryl.io/",
+    url: "${env:ARGOCD_URL}",
     searchurl:
-      "https://argocd.admin.acryl.io/applications?showFavorites=false&proj=&sync=&autoSync=&health=&namespace=&cluster=&labels=&search=",
+      "${env:ARGOCD_URL}applications?showFavorites=false&proj=&sync=&autoSync=&health=&namespace=&cluster=&labels=&search=",
   },
   patchfk: {
     name: "Patch Fork",
     url: "https://patch-diff.githubusercontent.com/",
     searchurl:
-      "https://patch-diff.githubusercontent.com/raw/acryldata/datahub-fork/pull/%s.diff",
+      "https://patch-diff.githubusercontent.com/raw/${env:GITHUB_FORK_PROJECT}/${env:GITHUB_FORK_REPO}/pull/%s.diff",
   },
   DEFAULT: {
     name: "Default - Google Search",
