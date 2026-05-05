@@ -21,7 +21,6 @@ export type CommandNames =
   | "ghfk"
   | "pros"
   | "prfk"
-  | "dptst"
   | "argocd"
   | "patchfk"
   | "DEFAULT";
@@ -78,10 +77,6 @@ export const COMMANDS: Record<CommandNames, CommandType> = {
   prfk: {
     name: "Datahub Fork PRs",
     url: "https://github.com/${env:GITHUB_FORK_PROJECT}/${env:GITHUB_FORK_REPO}/pulls",
-  },
-  dptst: {
-    name: "Datahub Deploy Test",
-    url: "https://deploy-test.acryl.io/",
   },
   g: {
     name: "Google",
